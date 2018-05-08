@@ -2,15 +2,17 @@
 //------ Dclaration des variables ------
 
 var combinaison = "";
+var nbTours = 0;
 
 //------ Gestion du HTML ------
 
 
 //Fonction éxécutée au clic du bouton de validation
 function valider(){
-  var color = new Array();
+  nbTours ++;
 
   //récupération des couleurs sélectionnnées
+  var color = new Array();
   for(var i=1;i<5;i++){
     color[i-1] = document.getElementById("color"+i).value;
   }
@@ -23,7 +25,7 @@ function valider(){
   liElt = document.createElement("li");
   liElt.setAttribute("class", "w3-cell w3-padding-small");
   liElt.setAttribute("style", "text-align: center;color: grey");
-  liElt.textContent = nbBien(0,combinaison,convertConbi(color));
+  liElt.textContent = nbBien(0,combinaison,convertToConbi(color));
   ulElt.appendChild(liElt);
 
   //ajout des 4 couleurs dans la liste
@@ -39,11 +41,43 @@ function valider(){
   liElt = document.createElement("li");
   liElt.setAttribute("class", "w3-cell w3-padding-small");
   liElt.setAttribute("style", "text-align: center;color: red");
-  liElt.textContent = nbBien(1,combinaison,convertConbi(color));
+  liElt.textContent = nbBien(1,combinaison,convertToConbi(color));
   ulElt.appendChild(liElt);
 
   //ajout de la nouvelle liste dans la liste réponse
   document.getElementById("Reponse").appendChild(ulElt);
+
+  //Si le joueur a fini
+  if(nbBien(1,combinaison,convertToConbi(color))==4){
+    //disparition des éléments de jeux
+    document.getElementById("Selection").setAttribute("style","display:none");
+    document.getElementById("Valide").setAttribute("style","display:none");
+    //ajout d'un message de fin récapitulatif
+    var liElt = document.createElement("li");
+    liElt.style = "list-style-type : none"
+    liElt.innerHTML = "<p>Vous avez gagné !</p><p>Il vous a fallu "+nbTours+" essais pour trouver la combinaison cachée</p>";
+    document.getElementById("Reponse").appendChild(liElt);
+  }
+
+  //Si l'ordi a gagné
+  if(nbTours==12){
+    //disparition des éléments de jeux
+    document.getElementById("Selection").setAttribute("style","display:none");
+    document.getElementById("Valide").setAttribute("style","display:none");
+    //ajout d'un message de fin récapitulatif
+    var liElt = document.createElement("li");
+    liElt.style = "list-style-type : none"
+    liElt.innerHTML = "<p>Vous avez Perdu !</p><p>Vous n'avez pas réussi à trouver la combinaison cachée en moins de 12 coups</p><p>Solution :</p>";
+    document.getElementById("Reponse").appendChild(liElt);
+    //ajout de la ligne solution
+    for (var i = 0; i <4 ; i++) {
+      liElt = document.createElement("li");
+      liElt.setAttribute("class", "w3-cell w3-padding-small");
+      liElt.style.width = "20%";
+      liElt.innerHTML = "<img src=\"data/"+convertToColor(combinaison)[i]+".png\" style=\"width:30%; margin-left:40%;\">";
+      document.getElementById("Reponse").appendChild(liElt);
+    }
+  }
 }
 
 //ajout de l'évènement au bouton Valide
@@ -52,6 +86,7 @@ document.getElementById("Valide").addEventListener("click",valider);
 
 //Fonction éxécutée au clic du bouton nouvelle partie
 function nouvPartie(){
+  nbTours = 0;
   //effacement des listes dans la liste Reponse
   var ulRepNodes = document.getElementById("Reponse");
   while(document.getElementById("Reponse").hasChildNodes()){
@@ -141,7 +176,7 @@ function nbBien(variableSelect, combi, test){
 
 //------ Conversion du tableau de couleur en combinaison chiffrée ------
 
-function convertConbi(couleurs){
+function convertToConbi(couleurs){
 
   var combi = "";
 
@@ -160,3 +195,23 @@ function convertConbi(couleurs){
 
 }
 
+//------ Conversion de la combinaison chiffrée en tableau de couleur ------
+
+function convertToColor(combi){
+
+  var couleurs = new Array;
+
+  for (var i = 0; i < combi.length; i++) {
+    if(combi.charAt(i) == '0'){couleurs[i] = "Blanc";}
+    if(combi.charAt(i) == '1'){couleurs[i] = "Rose"}
+    if(combi.charAt(i) == '2'){couleurs[i] = "Vert"}
+    if(combi.charAt(i) == '3'){couleurs[i] = "Rouge"}
+    if(combi.charAt(i) == '4'){couleurs[i] = "Orange"}
+    if(combi.charAt(i) == '5'){couleurs[i] = "Gris"}
+    if(combi.charAt(i) == '6'){couleurs[i] = "Jaune"}
+    if(combi.charAt(i) == '7'){couleurs[i] = "Bleu"}
+  }
+
+  return couleurs;
+
+}
