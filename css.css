@@ -1,6 +1,7 @@
 
 #Reponse{
-	display: none;
+	display: flex;
+	flex-direction: column;
 }
 ul{
 	padding-left: 10vw;
