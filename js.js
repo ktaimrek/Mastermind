@@ -22,7 +22,7 @@ function valider(){
   //premier élément de la liste : le nb de BienMal
   liElt = document.createElement("li");
   liElt.setAttribute("class", "w3-cell w3-padding-small");
-  liElt.setAttribute("style", "text-align: center");
+  liElt.setAttribute("style", "text-align: center;color: grey");
   liElt.textContent = nbBien(0,combinaison,convertConbi(color));
   ulElt.appendChild(liElt);
 
@@ -38,7 +38,7 @@ function valider(){
   //dernier élément de la liste : le nb de BienBien
   liElt = document.createElement("li");
   liElt.setAttribute("class", "w3-cell w3-padding-small");
-  liElt.setAttribute("style", "text-align: center");
+  liElt.setAttribute("style", "text-align: center;color: red");
   liElt.textContent = nbBien(1,combinaison,convertConbi(color));
   ulElt.appendChild(liElt);
 
