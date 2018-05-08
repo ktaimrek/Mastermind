@@ -1,0 +1,14 @@
+
+ul{
+	padding: 10vw;
+	padding-top: 0vh;
+	display: inline-flex;
+	list-style: none;
+}
+li{
+	width: 25%;
+	padding-left: 10vw;
+}
+#button	{
+	margin-left: 40vw;
+}
