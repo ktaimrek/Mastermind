@@ -16,8 +16,7 @@ function valider(){
   for (var i = 0; i <4 ; i++) {
     liElt = document.createElement("li");
 
-    //liElt.innerHTML = "</img url=\"data/"+color1+".png\">";
-    liElt.textContent = color[i];
+    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\">";
     ulElt.appendChild(liElt);
   }
   document.getElementById("Reponse").appendChild(ulElt);
