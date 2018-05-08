@@ -52,6 +52,12 @@ document.getElementById("Valide").addEventListener("click",valider);
 
 //Fonction éxécutée au clic du bouton nouvelle partie
 function nouvPartie(){
+  //effacement des listes dans la liste Reponse
+  var ulRepNodes = document.getElementById("Reponse");
+  while(document.getElementById("Reponse").hasChildNodes()){
+    document.getElementById("Reponse").removeChild(document.getElementById("Reponse").childNodes[0]);
+  }  
+  
   //apparition des éléments de jeux et mise à jour du bouton nouvelle partie
   document.getElementById("Selection").setAttribute("style","display:table");
   document.getElementById("Valide").setAttribute("style","display:block");
