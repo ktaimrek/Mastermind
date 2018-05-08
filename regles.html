@@ -10,15 +10,48 @@
 <body>
 
 	<!-- menu de navigation -->
-	<nav class="w3-card w3-large w3-mobile">
-		<a href="index.html" class="w3-btn w3-blue w3-padding-large w3-mobile">Jouer</a>
-    	<a href="regles.html" class="w3-btn w3-padding-large w3-mobile">Règles</a>
-    	<a href="credits.html" class="w3-btn w3-padding-large w3-mobile">Crédits</a>
+	<nav class="w3-card w3-large w3-mobile w3-top w3-white">
+		<a href="index.html" class="w3-btn w3-padding-large w3-mobile">Jouer</a>
+    	<a href="regles.html#pageContent" class="w3-btn w3-border-bottom w3-border-yellow w3-padding-large w3-mobile">Règles</a>
+    	<a href="credits.html#pageContent" class="w3-btn w3-padding-large w3-mobile">Crédits</a>
 	</nav>
 
+	<!-- Header -->
+	<div class="w3-display-container w3-content" style="max-width: 1564px;">
+	    <img class="w3-image" src="data/Home.jpg">
+	    <div class="w3-display-middle">
+	    	<h1 class="w3-padding w3-black w3-opacity-min">
+	      		Mastermind
+	      	</h1>
+	    </div>
+	</div>
+
 	<!-- contenu de la page -->
-	<div class="w3-content w3-padding">
-		Ici il y a les règles du jeu !
+	<div id="pageContent" class="w3-content w3-padding">
+		<h2>Les règles du jeu</h2>
+		<p>
+			Un joueur commence par placer son choix de pions sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche.
+		</p>
+		<p>
+			Le joueur qui n'a pas sélectionné les pions doit trouver quels sont les quatre pions, c'est-à-dire leurs couleurs et positions.
+		</p>
+		<p>
+			Pour cela, à chaque tour, le joueur doit se servir de pions pour remplir une rangée selon l'idée qu'il se fait des pions dissimulés.
+		</p>
+		<p>
+			Une fois les pions placés, l'autre joueur indique :
+		<ul>
+			<li>le nombre de pions de la bonne couleur bien placés en utilisant le même nombre de pions noirs ;</li>
+			<li>le nombre de pions de la bonne couleur, mais mal placés, avec les pions blancs.</li>
+		</ul>
+			Il arrive donc surtout en début de partie qu'il ne fasse rien concrètement et qu'il n'ait à dire qu'aucun pion ne correspond, en couleur ou en couleur et position.
+		</p>
+		<p>
+			La tactique du joueur actif consiste à sélectionner en fonction des coups précédents, couleurs et positions, de manière à obtenir le maximum d'informations de la réponse du partenaire puisque le nombre de propositions est limité par le nombre de rangées de trous du jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la solution, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
+		</p>
+		<p>
+			Le joueur gagne cette manche s'il donne la bonne combinaison de pions sur la dernière rangée ou avant. Dans tous les cas, c'est à son tour de choisir les pions à découvrir.
+		</p>
 	</div>
 </body>
 </html>
