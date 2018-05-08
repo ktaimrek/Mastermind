@@ -100,7 +100,7 @@ function nouvPartie(){
 
   //Création d'une combinaison aléatoire
   combinaison = ""+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8);
-  console.log("combinaison : "+combinaison);
+  console.log("combinaison : "+combinaison+" = "+convertToColor(combinaison));
 }
 
 //ajout de l'évènement au bouton Valide
