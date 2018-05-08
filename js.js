@@ -1,73 +1,156 @@
 
-//--- Gestion du HTML ---
+//------ Dclaration des variables ------
+
+var combinaison = "";
+
+//------ Gestion du HTML ------
 
 
-//Le bouton de validation
-
+//Fonction éxécutée au clic du bouton de validation
 function valider(){
   var color = new Array();
 
+  //récupération des couleurs sélectionnnées
   for(var i=1;i<5;i++){
     color[i-1] = document.getElementById("color"+i).value;
   }
 
+  //création d'une liste qui contiendra la ligne de couleurs
   ulElt = document.createElement("ul");
+  ulElt.setAttribute("class", "w3-cell-row");
 
+  //premier élément de la liste : le nb de BienMal
+  liElt = document.createElement("li");
+  liElt.setAttribute("class", "w3-cell w3-padding-small");
+  liElt.setAttribute("style", "text-align: center");
+  liElt.textContent = nbBien(0,combinaison,convertConbi(color));
+  ulElt.appendChild(liElt);
+
+  //ajout des 4 couleurs dans la liste
   for (var i = 0; i <4 ; i++) {
     liElt = document.createElement("li");
-
-    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\">";
+    liElt.setAttribute("class", "w3-cell w3-padding-small");
+    liElt.style.width = "20%";
+    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\" style=\"width:30%; margin-left:40%;\">";
     ulElt.appendChild(liElt);
   }
+
+  //dernier élément de la liste : le nb de BienBien
+  liElt = document.createElement("li");
+  liElt.setAttribute("class", "w3-cell w3-padding-small");
+  liElt.setAttribute("style", "text-align: center");
+  liElt.textContent = nbBien(1,combinaison,convertConbi(color));
+  ulElt.appendChild(liElt);
+
+  //ajout de la nouvelle liste dans la liste réponse
   document.getElementById("Reponse").appendChild(ulElt);
 }
 
-var buttonValide = document.getElementById("Valide");
-
-buttonValide.addEventListener("click",valider)
-
+//ajout de l'évènement au bouton Valide
+document.getElementById("Valide").addEventListener("click",valider);
 
 
-//--- Détection du nombre de pions bien et mal placé ---
+//Fonction éxécutée au clic du bouton nouvelle partie
+function nouvPartie(){
+  //apparition des éléments de jeux et mise à jour du bouton nouvelle partie
+  document.getElementById("Selection").setAttribute("style","display:table");
+  document.getElementById("Valide").setAttribute("style","display:block");
+  document.getElementById("NouvPartie").setAttribute("value","Recommencer");
 
-var test0 = "3,0,0,0";
-
-var combi = "3154";
-var nbBienMal = 0;
-var nbBienBien = 0;
-
-
-var  test = ""+test0.charAt(0)+test0.charAt(2)+test0.charAt(4)+test0.charAt(6);
-
-var combi2 = combi;
-var test2 = test;
-for(var i = 0;i<test2.length;i++){
-    if(combi2.charAt(i) == test2.charAt(i)){
-      nbBienBien++;
-      if(i == combi2.length-1){combi2 = combi2.substring(0,i);println(i);}
-      else{combi2 = combi2.substring(0,i)+combi2.substring(i+1);}
-      if(i == test2.length-1){test2 = test2.substring(0,i);}
-      else{test2 = test2.substring(0,i)+test2.substring(i+1);}
-      i--;
-      j=combi2.length;
-    }
+  //Création d'une combinaison aléatoire
+  combinaison = ""+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8);
+  console.log("combinaison : "+combinaison);
 }
 
-for(var i = 0;i<test2.length;i++){
-  for(var j = 0;j<combi2.length;j++){
-    if(combi2.charAt(j) == test2.charAt(i)){
-      nbBienMal++;
-      if(j == combi2.length-1){combi2 = combi2.substring(0,j);}
-      else{combi2 = combi2.substring(0,j)+combi2.substring(j+1);}
-      if(i == test2.length-1){test2 = test2.substring(0,i);}
-      else{test2 = test2.substring(0,i)+test2.substring(i+1);}
-      i--;
-      j=combi2.length;
+//ajout de l'évènement au bouton Valide
+document.getElementById("NouvPartie").addEventListener("click",nouvPartie);
+
+
+//Fonction éxécutée au moment une couleur est sélectionnée
+function selectColor(){
+  //récupération des sélecteurs
+  for(var i=1;i<5;i++){
+    var couleur;
+    if(document.getElementById("color"+i).value == "Blanc"){couleur = "#ffffff"}
+    if(document.getElementById("color"+i).value == "Rose"){couleur = "#ff67cc"}
+    if(document.getElementById("color"+i).value == "Vert"){couleur = "#67fc80"}
+    if(document.getElementById("color"+i).value == "Rouge"){couleur = "#ff0000"}
+    if(document.getElementById("color"+i).value == "Orange"){couleur = "#ff9c00"}
+    if(document.getElementById("color"+i).value == "Gris"){couleur = "#b9b9b9"}
+    if(document.getElementById("color"+i).value == "Jaune"){couleur = "#f7ff41"}
+    if(document.getElementById("color"+i).value == "Bleu"){couleur = "#06bcfc"}
+    document.getElementById("color"+i).setAttribute("style","background-color: "+couleur);
+  }
+  
+}
+
+//ajout de l'évènement aux sélecteurs
+document.getElementById("color1").addEventListener("change",selectColor);
+document.getElementById("color2").addEventListener("change",selectColor);
+document.getElementById("color3").addEventListener("change",selectColor);
+document.getElementById("color4").addEventListener("change",selectColor);
+
+
+
+//------ Détection du nombre de pions bien et mal placé ------
+
+function nbBien(variableSelect, combi, test){
+  var nbBienMal = 0;
+  var nbBienBien = 0;
+
+  for(var i = 0;i<test.length;i++){
+      if(combi.charAt(i) == test.charAt(i)){
+        nbBienBien++;
+        if(i == combi.length-1){combi = combi.substring(0,i);}
+        else{combi = combi.substring(0,i)+combi.substring(i+1);}
+        if(i == test.length-1){test = test.substring(0,i);}
+        else{test = test.substring(0,i)+test.substring(i+1);}
+        i--;
+        j=combi.length;
+      }
+  }
+
+  for(var i = 0;i<test.length;i++){
+    for(var j = 0;j<combi.length;j++){
+      if(combi.charAt(j) == test.charAt(i)){
+        nbBienMal++;
+        if(j == combi.length-1){combi = combi.substring(0,j);}
+        else{combi = combi.substring(0,j)+combi.substring(j+1);}
+        if(i == test.length-1){test = test.substring(0,i);}
+        else{test = test.substring(0,i)+test.substring(i+1);}
+        i--;
+        j=combi.length;
+      }
     }
   }
+
+  if(variableSelect == 0){
+    return nbBienMal;
+  }
+  else{
+    return nbBienBien;
+  }
+
 }
 
-console.log(combi+" - "+test);
-console.log("nbBienMal : "+nbBienMal);
-console.log("nbBienBien : "+nbBienBien);
+//------ Conversion du tableau de couleur en combinaison chiffrée ------
+
+function convertConbi(couleurs){
+
+  var combi = "";
+
+  for (var i = 0; i < couleurs.length; i++) {
+    if(couleurs[i] == "Blanc"){combi += "0"}
+    if(couleurs[i] == "Rose"){combi += "1"}
+    if(couleurs[i] == "Vert"){combi += "2"}
+    if(couleurs[i] == "Rouge"){combi += "3"}
+    if(couleurs[i] == "Orange"){combi += "4"}
+    if(couleurs[i] == "Gris"){combi += "5"}
+    if(couleurs[i] == "Jaune"){combi += "6"}
+    if(couleurs[i] == "Bleu"){combi += "7"}
+  }
+
+  return combi;
+
+}
 
