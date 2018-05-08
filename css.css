@@ -1,6 +1,10 @@
 
+#Reponse{
+	display: none;
+}
 ul{
-	padding: 10vw;
+	padding-left: 10vw;
+	padding-right: 10vw;
 	padding-top: 0vh;
 	display: inline-flex;
 	list-style: none;
@@ -9,6 +13,22 @@ li{
 	width: 25%;
 	padding-left: 10vw;
 }
+.color{
+	border-radius: 100vw;
+	padding:1.8vw;
+	padding-right: 0vw;
+	padding-left: 0vw;
+}
+.Bt_rose{
+	background-color: #ff67cc;
+}
 #button	{
-	margin-left: 40vw;
+	padding-top: 2vw;
+	margin-left: 35vw;
+}	
+#Valide{
+	border-radius: 100vw;
+	padding:10vw;
+	padding-right: 5vw;
+	padding-left: 5vw;
 }
