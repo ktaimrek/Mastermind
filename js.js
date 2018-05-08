@@ -1,4 +1,35 @@
 
+//--- Gestion du HTML ---
+
+
+//Le bouton de validation
+
+function valider(){
+  var color = new Array();
+
+  for(var i=1;i<5;i++){
+    color[i-1] = document.getElementById("color"+i).value;
+  }
+
+  ulElt = document.createElement("ul");
+
+  for (var i = 0; i <4 ; i++) {
+    liElt = document.createElement("li");
+
+    //liElt.innerHTML = "</img url=\"data/"+color1+".png\">";
+    liElt.textContent = color[i];
+    ulElt.appendChild(liElt);
+  }
+  document.getElementById("Reponse").appendChild(ulElt);
+}
+
+var buttonValide = document.getElementById("Valide");
+
+buttonValide.addEventListener("click",valider)
+
+
+
+//--- Détection du nombre de pions bien et mal placé ---
 
 var test0 = "3,0,0,0";
 
