@@ -18,130 +18,59 @@
 
 
 	<div id="pageContent" class="w3-content w3-padding-large w3-card" style="min-height: 100vh;background-color: white;">
+		<!-- Choix de la difficulté -->
+		<div class="w3-center  w3-padding">
+			<div class="w3-bar w3-padding">
+				<button id="but-facile" class="w3-bar-item w3-button w3-light-grey">Facile</button>
+	  			<button id="but-moyen" class="w3-bar-item w3-button w3-light-grey w3-border-bottom w3-border-blue">Moyen</button>
+	  			<button id="but-diff" class="w3-bar-item w3-button w3-light-grey">Difficile</button>
+	  			<button id="but-epique" class="w3-bar-item w3-button w3-light-grey">Epique</button>
+			</div>
+			<p>
+				Vous disposez de <span id="nbCoups">12</span> essais pour trouver une combinaison avec les couleurs suivantes :
+			</p>
+			<div id="listCouleurs" class="w3-padding">
+				<img src="data/Blanc.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Rose.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Vert.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Rouge.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Orange.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Gris.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Jaune.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Bleu.png" class="w3-bar-item" style="width: 7%;">
+				<img src="data/Violet.png" class="listImgHide w3-bar-item" style="width: 7%;display: none;">
+				<img src="data/Marron.png" class="listImgHide w3-bar-item" style="width: 7%;display: none;">
+			</div>
+		</div>
+		
 		<form id="button" class="w3-center">
-		    <input type="button" value="Nouvelle partie" id="NouvPartie" class="w3-btn w3-padding-large w3-light-grey">
+		    <input type="button" value="Nouvelle partie" id="NouvPartie" class="w3-btn w3-padding-large w3-blue">
 		    </input>
 		</form>
-	    <ul id="Reponse" class="w3-container">
+	    <ul id="Reponse" class="w3-container w3-padding w3-border-top">
 	    </ul>
 		<ul class="w3-cell-row w3-border-top" id="Selection" style="display: none;">
 	    	<li class="w3-cell w3-padding-small" style="width:20%">
 	    		<form>
 	    			<select name="color1" id="color1" class="w3-select">
-	    				<option class="Bt_blanc">
-	    					Blanc
-	    				</option>
-	    				<option class="Bt_rose">
-	    					Rose
-	    				</option>
-	    				<option class="Bt_vert">
-	    					Vert
-	    				</option>
-	    				<option class="Bt_rouge">
-	    					Rouge
-	    				</option>
-	    				<option class="Bt_orange">
-	    					Orange
-	    				</option>
-	    				<option class="Bt_gris">
-	    					Gris
-	    				</option>
-	    				<option class="Bt_jaune">
-	    					Jaune
-	    				</option>
-	    				<option class="Bt_bleu">
-	    					Bleu
-	    				</option>
 	    			</select>
 	    		</form>
 	    	</li>
 	    	<li class="w3-cell  w3-padding-small" style="width:20%">
 	    		<form>
 	    			<select name="color2" id="color2" class="w3-select">
-	    				<option class="Bt_blanc">
-	    					Blanc
-	    				</option>
-	    				<option class="Bt_rose">
-	    					Rose
-	    				</option>
-	    				<option class="Bt_vert">
-	    					Vert
-	    				</option>
-	    				<option class="Bt_rouge">
-	    					Rouge
-	    				</option>
-	    				<option class="Bt_orange">
-	    					Orange
-	    				</option>
-	    				<option class="Bt_gris">
-	    					Gris
-	    				</option>
-	    				<option class="Bt_jaune">
-	    					Jaune
-	    				</option>
-	    				<option class="Bt_bleu">
-	    					Bleu
-	    				</option>
 	    			</select>
 	    		</form>
 	    	</li>
 	    	<li class="w3-cell  w3-padding-small" style="width:20%">
 	    		<form>
 	    			<select name="color3" id="color3" class="w3-select">
-	    				<option class="Bt_blanc">
-	    					Blanc
-	    				</option>
-	    				<option class="Bt_rose">
-	    					Rose
-	    				</option>
-	    				<option class="Bt_vert">
-	    					Vert
-	    				</option>
-	    				<option class="Bt_rouge">
-	    					Rouge
-	    				</option>
-	    				<option class="Bt_orange">
-	    					Orange
-	    				</option>
-	    				<option class="Bt_gris">
-	    					Gris
-	    				</option>
-	    				<option class="Bt_jaune">
-	    					Jaune
-	    				</option>
-	    				<option class="Bt_bleu">
-	    					Bleu
-	    				</option>
 	    			</select>
 	    		</form>
 	    	</li>
 	    	<li class="w3-cell  w3-padding-small" style="width:20%">
 	    		<form>
 	    			<select name="color4" id="color4" class="w3-select">
-	    				<option class="Bt_blanc">
-	    					Blanc
-	    				</option>
-	    				<option class="Bt_rose">
-	    					Rose
-	    				</option>
-	    				<option class="Bt_vert">
-	    					Vert
-	    				</option>
-	    				<option class="Bt_rouge">
-	    					Rouge
-	    				</option>
-	    				<option class="Bt_orange">
-	    					Orange
-	    				</option>
-	    				<option class="Bt_gris">
-	    					Gris
-	    				</option>
-	    				<option class="Bt_jaune">
-	    					Jaune
-	    				</option>
-	    				<option class="Bt_bleu">
-	    					Bleu
-	    				</option>
 	    			</select>
 	    		</form>
 	    	</li>

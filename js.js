@@ -3,6 +3,9 @@
 
 var combinaison = "";
 var nbTours = 0;
+var difficult = 1;
+var SelectDifficult = 1;
+var nbToursMax = 12;
 
 //------ Gestion du HTML ------
 
@@ -27,13 +30,14 @@ function valider(){
   liElt.setAttribute("style", "text-align: center;color: grey");
   liElt.textContent = nbBien(0,combinaison,convertToConbi(color));
   ulElt.appendChild(liElt);
+  console.log(color+" / "+convertToConbi(color))
 
   //ajout des 4 couleurs dans la liste
   for (var i = 0; i <4 ; i++) {
     liElt = document.createElement("li");
     liElt.setAttribute("class", "w3-cell w3-padding-small");
     liElt.style.width = "20%";
-    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\" style=\"width:30%; margin-left:40%;\">";
+    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\" style=\"width:40%; margin-left: 30%;\">";
     ulElt.appendChild(liElt);
   }
 
@@ -60,14 +64,14 @@ function valider(){
   }
 
   //Si l'ordi a gagné
-  if(nbTours==12){
+  if(nbTours==nbToursMax){
     //disparition des éléments de jeux
     document.getElementById("Selection").setAttribute("style","display:none");
     document.getElementById("Valide").setAttribute("style","display:none");
     //ajout d'un message de fin récapitulatif
     var liElt = document.createElement("li");
     liElt.style = "list-style-type : none"
-    liElt.innerHTML = "<p>Vous avez Perdu !</p><p>Vous n'avez pas réussi à trouver la combinaison cachée en moins de 12 coups</p><p>Solution :</p>";
+    liElt.innerHTML = "<p>Vous avez Perdu !</p><p>Vous n'avez pas réussi à trouver la combinaison cachée en moins de "+nbToursMax+" coups</p><p>Solution :</p>";
     document.getElementById("Reponse").appendChild(liElt);
     //ajout de la ligne solution
     for (var i = 0; i <4 ; i++) {
@@ -84,14 +88,83 @@ function valider(){
 document.getElementById("Valide").addEventListener("click",valider);
 
 
+////Fonction éxécutée au d'un des boutons de difficultée
+function butFacile(){
+  document.getElementById("but-facile").setAttribute("class","w3-bar-item w3-button w3-light-grey w3-border-bottom w3-border-green");
+  document.getElementById("but-moyen").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-diff").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-epique").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("nbCoups").textContent = "14";
+  for (var i = 0; i < 2; i++) {
+    document.getElementsByClassName("listImgHide")[i].setAttribute("style","width: 7%;display: none;")
+  }
+  SelectDifficult = 0;
+}
+function butMoyen(){
+  document.getElementById("but-facile").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-moyen").setAttribute("class","w3-bar-item w3-button w3-light-grey w3-border-bottom w3-border-blue");
+  document.getElementById("but-diff").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-epique").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("nbCoups").textContent = "12";
+  for (var i = 0; i < 2; i++) {
+    document.getElementsByClassName("listImgHide")[i].setAttribute("style","width: 7%;display: none;")
+  }
+  SelectDifficult = 1;
+}
+function butDiff(){
+  document.getElementById("but-facile").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-moyen").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-diff").setAttribute("class","w3-bar-item w3-button w3-light-grey w3-border-bottom w3-border-orange");
+  document.getElementById("but-epique").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("nbCoups").textContent = "10";
+  for (var i = 0; i < 2; i++) {
+    document.getElementsByClassName("listImgHide")[i].setAttribute("style","width: 7%;display: none;")
+  }
+  SelectDifficult = 2;
+}
+function butEpique(){
+  document.getElementById("but-facile").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-moyen").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-diff").setAttribute("class","w3-bar-item w3-button w3-light-grey");
+  document.getElementById("but-epique").setAttribute("class","w3-bar-item w3-button w3-light-grey w3-border-bottom w3-border-red");
+  document.getElementById("nbCoups").textContent = "8";
+  for (var i = 0; i < 2; i++) {
+    document.getElementsByClassName("listImgHide")[i].setAttribute("style","width: 7%;display: inline;")
+  }
+  SelectDifficult = 3;
+}
+
+document.getElementById("but-facile").addEventListener("click",butFacile);
+document.getElementById("but-moyen").addEventListener("click",butMoyen);
+document.getElementById("but-diff").addEventListener("click",butDiff);
+document.getElementById("but-epique").addEventListener("click",butEpique);
+
 //Fonction éxécutée au clic du bouton nouvelle partie
 function nouvPartie(){
   nbTours = 0;
+
+  //mise en place de la difficultée
+  setDifficult(SelectDifficult);
+
+  //ajout des couleurs en plus dans les sélecteurs si mode épique
+  if(difficult == 3){
+    for(var i=1;i<5;i++){
+      document.getElementById("color"+i).innerHTML = "<option class=\"Bt_blanc\">Blanc</option><option class=\"Bt_rose\">Rose</option><option class=\"Bt_vert\">Vert</option><option class=\"Bt_rouge\">Rouge</option><option class=\"Bt_orange\">Orange</option><option class=\"Bt_gris\">Gris</option><option class=\"Bt_jaune\">Jaune</option><option class=\"Bt_bleu\">Bleu</option><option class=\"Bt_violet\">Violet</option><option class=\"Bt_marron\">Marron</option>";
+      document.getElementById("color"+i).setAttribute("style","background-color: #ffffff");
+    }
+  }
+  else{
+    for(var i=1;i<5;i++){
+      document.getElementById("color"+i).innerHTML = "<option class=\"Bt_blanc\">Blanc</option><option class=\"Bt_rose\">Rose</option><option class=\"Bt_vert\">Vert</option><option class=\"Bt_rouge\">Rouge</option><option class=\"Bt_orange\">Orange</option><option class=\"Bt_gris\">Gris</option><option class=\"Bt_jaune\">Jaune</option><option class=\"Bt_bleu\">Bleu</option>";
+      document.getElementById("color"+i).setAttribute("style","background-color: #ffffff");
+    }
+  }
+
   //effacement des listes dans la liste Reponse
   var ulRepNodes = document.getElementById("Reponse");
   while(document.getElementById("Reponse").hasChildNodes()){
     document.getElementById("Reponse").removeChild(document.getElementById("Reponse").childNodes[0]);
-  }  
+  }
   
   //apparition des éléments de jeux et mise à jour du bouton nouvelle partie
   document.getElementById("Selection").setAttribute("style","display:table");
@@ -99,7 +172,12 @@ function nouvPartie(){
   document.getElementById("NouvPartie").setAttribute("value","Recommencer");
 
   //Création d'une combinaison aléatoire
-  combinaison = ""+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8);
+  if(difficult == 3){
+    combinaison = ""+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10);
+  }
+  else{
+    combinaison = ""+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+Math.floor(Math.random()*8);
+  }
   console.log("combinaison : "+combinaison+" = "+convertToColor(combinaison));
 
 }
@@ -121,6 +199,8 @@ function selectColor(){
     if(document.getElementById("color"+i).value == "Gris"){couleur = "#b9b9b9"}
     if(document.getElementById("color"+i).value == "Jaune"){couleur = "#f7ff41"}
     if(document.getElementById("color"+i).value == "Bleu"){couleur = "#06bcfc"}
+    if(document.getElementById("color"+i).value == "Violet"){couleur = "#a30092"}
+    if(document.getElementById("color"+i).value == "Marron"){couleur = "#b0773a"}
     document.getElementById("color"+i).setAttribute("style","background-color: "+couleur);
   }
   
@@ -140,7 +220,7 @@ function nbBien(variableSelect, combi, test){
   var nbBienMal = 0;
   var nbBienBien = 0;
 
-  for(var i = 0;i<test.length;i++){
+  for(var i = 0;i<test.length;i++){//console.log("i : "+i+" / "+combi.charAt(i)+" / "+test.charAt(i))
       if(combi.charAt(i) == test.charAt(i)){
         nbBienBien++;
         if(i == combi.length-1){combi = combi.substring(0,i);}
@@ -151,6 +231,7 @@ function nbBien(variableSelect, combi, test){
         j=combi.length;
       }
   }
+  //console.log("combi : "+combi+" / test : "+test);
 
   for(var i = 0;i<test.length;i++){
     for(var j = 0;j<combi.length;j++){
@@ -190,6 +271,8 @@ function convertToConbi(couleurs){
     if(couleurs[i] == "Gris"){combi += "5"}
     if(couleurs[i] == "Jaune"){combi += "6"}
     if(couleurs[i] == "Bleu"){combi += "7"}
+    if(couleurs[i] == "Violet"){combi += "8"}
+    if(couleurs[i] == "Marron"){combi += "9"}
   }
 
   return combi;
@@ -211,8 +294,36 @@ function convertToColor(combi){
     if(combi.charAt(i) == '5'){couleurs[i] = "Gris"}
     if(combi.charAt(i) == '6'){couleurs[i] = "Jaune"}
     if(combi.charAt(i) == '7'){couleurs[i] = "Bleu"}
+    if(combi.charAt(i) == '8'){couleurs[i] = "Violet"}
+    if(combi.charAt(i) == '9'){couleurs[i] = "Marron"}
   }
 
   return couleurs;
 
 }
+
+//------ Change la difficulté ------
+function setDifficult(diff){
+  switch(diff){
+    case 0 :
+      difficult = 0;
+      nbToursMax = 14;
+      break;
+
+    case 1 :
+      difficult = 1;
+      nbToursMax = 12;
+      break;
+
+    case 2 :
+      difficult = 2;
+      nbToursMax = 10;
+      break;
+
+    case 3 :
+      difficult = 3;
+      nbToursMax = 8;
+      break;
+  }
+}
+
