@@ -1,1 +1,9 @@
+@font-face {
+    font-family: 'PoliceTitre';
+    src: url('data/PoliceTitre.ttf');
+}
 
+#titre{
+	font-family: 'PoliceTitre';
+	font-size: 5em;
+}
