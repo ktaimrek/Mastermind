@@ -130,6 +130,7 @@ function butEpique(){
   document.getElementById("nbCoups").textContent = "8";
   for (var i = 0; i < 2; i++) {
     document.getElementsByClassName("listImgHide")[i].setAttribute("style","width: 7%;display: inline;")
+    document.getElementsByClassName("listImgHide")[i].setAttribute("class","listImgHide w3-bar-item w3-animate-opacity");
   }
   SelectDifficult = 3;
 }

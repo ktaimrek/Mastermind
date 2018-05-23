@@ -18,30 +18,95 @@
 
 	<!-- contenu de la page -->
 	<div id="pageContent" class="w3-content w3-padding w3-card" style="min-height: 100vh;background-color: white">
-		<h2>Les règles du jeu</h2>
+		<h2>But du jeu</h2>
 		<p>
-			Un joueur commence par placer son choix de pions sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche.
+			Le but du jeu consiste à deviner une combinaison secrète de 4 couleurs en un nombre limité de propositions. Pour cela, vous disposez d'indications sur chacune de vos propositions. Il vous faut utiliser vos précédentes propositions pour deviner quelle peut être la combinaison secrète.
 		</p>
+		<h2>Déroulement</h2>
 		<p>
-			Le joueur qui n'a pas sélectionné les pions doit trouver quels sont les quatre pions, c'est-à-dire leurs couleurs et positions.
+			Tout d'abord, il vous faut faire une proposition de combinaison. Vous pouvez selectionner les couleurs de votre proposition grâce aux menus suivants :
 		</p>
+		<form>
+	    	<select class="w3-select" style="width:20%">
+	    		<option class="Bt_blanc">Blanc</option>
+	    		<option class="Bt_rose">Rose</option>
+	    		<option class="Bt_vert">Vert</option>
+	    		<option class="Bt_rouge">Rouge</option>
+	    		<option class="Bt_orange">Orange</option>
+	    		<option class="Bt_gris">Gris</option>
+	    		<option class="Bt_jaune">Jaune</option>
+	    		<option class="Bt_bleu">Bleu</option>
+	    	</select>
+	    </form>
 		<p>
-			Pour cela, à chaque tour, le joueur doit se servir de pions pour remplir une rangée selon l'idée qu'il se fait des pions dissimulés.
+			Lorsque vous validez votre proposition, l'ordinateur contre qui vous jouez va vous fournir les indices nécessaires à la résolution. Il ne vous reste plus qu'à proposer une nouvelle combinaison en vous servant des indications sur les propositions précédentes.
 		</p>
+		<h2>Indications</h2>
 		<p>
-			Une fois les pions placés, l'autre joueur indique :
+			Vous disposez de 2 types d'indications :
 		<ul>
-			<li>le nombre de pions de la bonne couleur bien placés en utilisant le même nombre de pions noirs ;</li>
-			<li>le nombre de pions de la bonne couleur, mais mal placés, avec les pions blancs.</li>
+			<li>le nombre de pions de la bonne couleur mal placés (en gris à gauche)</li>
+			<li>le nombre de pions de la bonne couleur bien placés (en rouge à droite)</li>
 		</ul>
-			Il arrive donc surtout en début de partie qu'il ne fasse rien concrètement et qu'il n'ait à dire qu'aucun pion ne correspond, en couleur ou en couleur et position.
+		</p>
+		<h2>Exemple</h2>
+		<p>
+			Dans l'exemple suivant, la combinaison que vous devez deviner est la suivante :
+		</p>
+		<ul class="w3-cell-row w3-border">
+			<li class="w3-cell w3-padding-small" style="width: 20%"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%"><img src="data/Rouge.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%"><img src="data/Vert.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+		</ul>
+		<p>
+			Imaginons que vous faite la proposition suivante :
+		</p>
+		<ul class="w3-cell-row">
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: grey;">2</li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Rose.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Gris.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Vert.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: red;">0</li>
+		</ul>
+		<p>
+			Vous remarquez qu'il y a bien 2 pions de la bonne couleurs, le vert et le bleu, mais que ceux-ci ne sont pas au bon endroit. Ceci est indiqué par le chiffre en gris. De plus, comme aucun pion n'est bien placé, le chiffre en rouge est 0.
 		</p>
 		<p>
-			La tactique du joueur actif consiste à sélectionner en fonction des coups précédents, couleurs et positions, de manière à obtenir le maximum d'informations de la réponse du partenaire puisque le nombre de propositions est limité par le nombre de rangées de trous du jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la solution, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
+			Maintenant vous faites la proposition suivante :
+		</p>
+		<ul class="w3-cell-row">
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: grey;">0</li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Vert.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: red;">3</li>
+		</ul>
+		<p>
+			Il y ici 3 pions de la bonne couleur et bien placé, comme nous l'indique le chiffre rouge. Les bons pions sont le bleu à gauche, le bleu à droite et le vert. Vous remarquez que l'on ne compte pas le deuxième bleu, bien que la couleur bleu soit présente dans la combinaison. En effet, la combinaison secrète ne contient que 2 pions bleu, le troisième est donc considéré comme étant de la mauvaise couleur. La bonne couleur étant dans ce cas là le rouge.
 		</p>
 		<p>
-			Le joueur gagne cette manche s'il donne la bonne combinaison de pions sur la dernière rangée ou avant. Dans tous les cas, c'est à son tour de choisir les pions à découvrir.
+			Enfin vous faites la proposition suivante :
 		</p>
+		<ul class="w3-cell-row">
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: grey;">2</li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Vert.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Rouge.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="width: 20%;"><img src="data/Bleu.png" style="width:40%;margin-left: 30%"></li>
+			<li class="w3-cell w3-padding-small" style="text-align: center;color: red;">2</li>
+		</ul>
+		<p>
+			Tout d'abord, vous pouvez remarquer que la somme des indications donne 4, ce qui correspont à la longueur de la combinaison. Ceci signifie que vous avez trouvé toutes les bonnes couleurs de la combinaison secrète, mais qu'elles ne sont pas forcément dans le bon ordre. Vous voyez ici que les 2 couleurs qui sont mal placé sont le vert et le rouge, et que les 2 couleurs bien placées sont les 2 bleu.
+		</p>
+		<p>
+			Avec ces 3 propositions vous disposez de suffisament d'indices pour deviner la combinaison. Vous verrez cependant que la difficulté du jeu réside aussi bien dans l'interprétation des indices que dans l'élaboration de propositions pertinantes.
+		</p>
+		<h4 style="text-align: center">
+			À vous de jouer maintenant !
+		</h4>
 	</div>
 </body>
 </html>
