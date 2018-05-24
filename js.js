@@ -1,11 +1,11 @@
 
 //------ Dclaration des variables ------
 
-var combinaison = "";
-var nbTours = 0;
-var difficult = 1;
-var SelectDifficult = 1;
-var nbToursMax = 12;
+var combinaison = ""; //contient la combinaison secrète
+var nbTours = 0; //nb d'essais fait pas le joueur au cours de la partie
+var difficult = 1; //niveau de difficulté de la partie en cours
+var SelectDifficult = 1; //niveau de difficulté sélectionné pour la prochaine parite
+var nbToursMax = 12; //nb de tours max que peut faire le joueur
 
 //------ Gestion du HTML ------
 
@@ -30,14 +30,13 @@ function valider(){
   liElt.setAttribute("style", "text-align: center;color: grey");
   liElt.textContent = nbBien(0,combinaison,convertToConbi(color));
   ulElt.appendChild(liElt);
-  console.log(color+" / "+convertToConbi(color))
 
   //ajout des 4 couleurs dans la liste
   for (var i = 0; i <4 ; i++) {
     liElt = document.createElement("li");
     liElt.setAttribute("class", "w3-cell w3-padding-small");
     liElt.style.width = "20%";
-    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\" style=\"width:40%; margin-left: 30%;\">";
+    liElt.innerHTML = "<img src=\"data/"+color[i]+".png\" class=\"Hamster\" style=\"width:40%; margin-left: 30%;\">";
     ulElt.appendChild(liElt);
   }
 
@@ -221,7 +220,7 @@ function nbBien(variableSelect, combi, test){
   var nbBienMal = 0;
   var nbBienBien = 0;
 
-  for(var i = 0;i<test.length;i++){//console.log("i : "+i+" / "+combi.charAt(i)+" / "+test.charAt(i))
+  for(var i = 0;i<test.length;i++){
       if(combi.charAt(i) == test.charAt(i)){
         nbBienBien++;
         if(i == combi.length-1){combi = combi.substring(0,i);}
@@ -232,7 +231,6 @@ function nbBien(variableSelect, combi, test){
         j=combi.length;
       }
   }
-  //console.log("combi : "+combi+" / test : "+test);
 
   for(var i = 0;i<test.length;i++){
     for(var j = 0;j<combi.length;j++){
@@ -328,3 +326,31 @@ function setDifficult(diff){
   }
 }
 
+//--- Apparition aléatoire des Hamsters ---
+var time = 3000;
+var boucle = setInterval(boucleFonction , time);
+
+function boucleFonction() {
+  //lance l'apparition d'un nouveau Hamster
+  apparitionHamster();
+  //suprimme le temps de répétition
+  clearInterval(boucle);
+  //change le temps de répétition
+  time = Math.floor(Math.random()*(60000-30000)+30000);console.log(time);
+  //redéfinit boucle avec le nouveaux temps de répétition
+  boucle = setInterval(boucleFonction,time);
+
+}
+
+function apparitionHamster(){
+  var hamsterElt = document.getElementsByClassName("Hamster");
+  for (var i = 0; i < hamsterElt.length; i++) {
+    var source = hamsterElt[i].getAttribute("src");
+    source = source.substring(0,source.length-4)+".png"
+    hamsterElt[i].setAttribute("src",source);
+  }
+  var rang = Math.floor(Math.random()*hamsterElt.length);
+  var source = hamsterElt[rang].getAttribute("src");
+  source = source.substring(0,source.length-4)+".gif";
+  hamsterElt[rang].setAttribute("src",source);
+}
