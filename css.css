@@ -7,3 +7,8 @@
 	font-family: 'PoliceTitre';
 	font-size: 5em;
 }
+@media (max-width:600px){
+	#titre{
+	font-family: 'PoliceTitre';
+	font-size: 2em;
+}}

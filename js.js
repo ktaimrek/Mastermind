@@ -336,7 +336,7 @@ function boucleFonction() {
   //suprimme le temps de répétition
   clearInterval(boucle);
   //change le temps de répétition
-  time = Math.floor(Math.random()*(60000-30000)+30000);console.log(time);
+  time = Math.floor(Math.random()*(60000-30000)+30000);
   //redéfinit boucle avec le nouveaux temps de répétition
   boucle = setInterval(boucleFonction,time);
 
